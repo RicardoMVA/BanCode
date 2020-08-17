@@ -5,7 +5,8 @@ public class User {
     private String name;
     private String avatar;
     private int telefone;
-    private int pws;
+    // senha do usuário
+    private String pws;
 
     public int getCpf() {
         return cpf;
@@ -39,11 +40,11 @@ public class User {
         this.telefone = telefone;
     }
 
-    public int getPws() {
+    public String getPws() {
         return pws;
     }
 
-    public void setPws(int pws) {
+    public void setPws(String pws) {
         this.pws = pws;
     }
 
