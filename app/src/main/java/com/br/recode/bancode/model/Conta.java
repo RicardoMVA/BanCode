@@ -4,7 +4,7 @@ public class Conta {
     private String _id;
     private int bank_branch;
     private int code;
-    private int cpf;
+    private String cpf;
     private double account_balance;
     private int status;
     private String createdAt;
@@ -34,11 +34,11 @@ public class Conta {
         this.code = code;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
