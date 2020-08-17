@@ -8,6 +8,14 @@ public class User {
     // senha do usuário
     private String pws;
 
+    public User(int cpf, String name, String avatar, int telefone, String pws) {
+        this.cpf = cpf;
+        this.name = name;
+        this.avatar = avatar;
+        this.telefone = telefone;
+        this.pws = pws;
+    }
+
     public int getCpf() {
         return cpf;
     }
