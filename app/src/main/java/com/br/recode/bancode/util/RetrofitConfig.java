@@ -13,6 +13,10 @@ public class RetrofitConfig {
                 .build();
     }
 
+    public UserService getUserService() {
+        return this.retrofit.create(UserService.class);
+    }
+
     public ContaService getContaService() {
         return this.retrofit.create(ContaService.class);
     }
