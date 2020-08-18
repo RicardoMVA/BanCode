@@ -1,27 +1,23 @@
 package com.br.recode.bancode.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"createdAt", "updatedAt", "__v"})
 public class User {
-    private int cpf;
+    private String _id;
     private String name;
-    private String avatar;
-    private int telefone;
+    private String cpf;
     // senha do usuário
     private String pws;
+    private String telefone;
+    private String avatar;
 
-    public User(int cpf, String name, String avatar, int telefone, String pws) {
-        this.cpf = cpf;
-        this.name = name;
-        this.avatar = avatar;
-        this.telefone = telefone;
-        this.pws = pws;
+    public String get_id() {
+        return _id;
     }
 
-    public int getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(int cpf) {
-        this.cpf = cpf;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {
@@ -32,20 +28,12 @@ public class User {
         this.name = name;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public int getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getPws() {
@@ -56,14 +44,31 @@ public class User {
         this.pws = pws;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
-        return "User {" +
-                "cpf=" + cpf +
+        return "User{" +
+                "_id='" + _id + '\'' +
                 ", name='" + name + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", pws='" + pws + '\'' +
+                ", telefone='" + telefone + '\'' +
                 ", avatar='" + avatar + '\'' +
-                ", telefone=" + telefone +
-                ", pws=" + pws +
                 '}';
     }
 }

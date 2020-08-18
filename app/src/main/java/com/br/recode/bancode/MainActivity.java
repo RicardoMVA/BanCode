@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.body() == null) {
-                            String erro = response.message();
+                            // ? response.message();
                             resposta.setText("Cliente inexistente ou senha inválida.");
                         } else {
                             User usuario = response.body();
@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        // caso ocorra erro na requisição, manda mensagem de erro para o view
-                        Log.e("UserService: ", "Erro ao buscar pessoa: " + t.getMessage());
+                        resposta.setText("Cliente inexistente ou senha inválida.");
                     }
                 });
             }
