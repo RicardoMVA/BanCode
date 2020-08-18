@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BanCode</string>
+    <string name="cpf_input_hint">Digite seu CPF</string>
+    <string name="senha_input_hint">Digite sua senha</string>
 </resources>
