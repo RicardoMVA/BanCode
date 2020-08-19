@@ -2,14 +2,12 @@ package com.br.recode.bancode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
@@ -34,10 +32,8 @@ public class MainActivity extends AppCompatActivity {
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // aqui usamos o método do retrofit e a interface que fizemos para criar uma call
                 Call<User> call = new RetrofitConfig().getUserService().buscarUsuario(cpfInput.getText().toString(), senhaInput.getText().toString());
 
-                // com o call criado podemos realizar a requisição
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
@@ -58,5 +54,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        botaoCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            Intent intent = new Intent(MainActivity.this, CadastroActivity.class);
+            startActivity(intent);
+            }
+        });
     }
 }
