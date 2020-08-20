@@ -30,6 +30,14 @@
             android:name=".ClienteActivity"
             android:label="Área do cliente">
         </activity>
+        <activity
+            android:name=".EditarClienteActivity"
+            android:label="Editar dados"
+            android:parentActivityName=".ClienteActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ClienteActivity"/>
+        </activity>
     </application>
 
 </manifest>

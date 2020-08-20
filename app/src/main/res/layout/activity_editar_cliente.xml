@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="50dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".EditarClienteActivity">
+
+    <TextView
+        android:id="@+id/cabecalho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Editar dados:"
+        android:textSize="30dp"
+        android:layout_marginBottom="30dp"/>
+
+    <EditText
+        android:id="@+id/cpfInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="number"
+        android:digits="0123456789"
+        android:hint="@string/cpf_input_hint"
+        android:layout_marginBottom="15dp"/>
+
+    <EditText
+        android:id="@+id/nomeInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="text"
+        android:hint="@string/nome_input_hint"
+        android:layout_marginBottom="15dp"/>
+
+    <EditText
+        android:id="@+id/avatarInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="text"
+        android:hint="@string/avatar_input_hint"
+        android:layout_marginBottom="15dp"/>
+
+    <EditText
+        android:id="@+id/telefoneInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="number"
+        android:digits="0123456789"
+        android:hint="@string/telefone_input_hint"
+        android:layout_marginBottom="15dp"/>
+
+    <EditText
+        android:id="@+id/senhaInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="text"
+        android:hint="@string/senha_input_hint"
+        android:layout_marginBottom="30dp"/>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/botaoEdicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingHorizontal="37dp"
+            android:text="Salvar edição"
+            android:background="@color/colorAccent"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/resultadoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15dp"/>
+
+</LinearLayout>
