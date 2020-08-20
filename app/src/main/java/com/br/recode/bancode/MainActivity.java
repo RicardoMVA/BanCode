@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             User usuario = response.body();
                             resposta.setText(usuario.toString());
+                            Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
+                            intent.putExtra("nomeUser", usuario.getName());
+                            startActivity(intent);
                         }
                     }
 
