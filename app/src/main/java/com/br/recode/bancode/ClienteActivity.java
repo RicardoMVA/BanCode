@@ -32,6 +32,6 @@ public class ClienteActivity extends AppCompatActivity {
                 intent.putExtra("user", usuario);
                 startActivity(intent);
             }
-        }
-    });
+        });
+    };
 }
