@@ -2,8 +2,10 @@ package com.br.recode.bancode.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties({"createdAt", "updatedAt", "__v"})
-public class User {
+public class User implements Serializable {
     private String _id;
     private String name;
     private String cpf;
