@@ -19,6 +19,6 @@ public class MovimentacaoActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerMovimentacao.setLayoutManager(linearLayoutManager);
-        recyclerMovimentacao.setAdapter(new ListaMovimentacaoAdapter());
+//        recyclerMovimentacao.setAdapter(new ListaMovimentacaoAdapter());
     }
 }
