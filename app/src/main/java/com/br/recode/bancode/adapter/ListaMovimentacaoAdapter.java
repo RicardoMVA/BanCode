@@ -1,5 +1,6 @@
 package com.br.recode.bancode.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.br.recode.bancode.R;
+import com.br.recode.bancode.model.Movimentacao;
+
+import java.util.LinkedList;
 
 public class ListaMovimentacaoAdapter extends RecyclerView.Adapter<ListaMovimentacaoAdapter.ListaMovimentacaoViewHolder> {
+
+    private Context context;
+    private LinkedList<Movimentacao> listaDeMovimentacoes;
+    private Movimentacao umaMovimentacao;
+
+    public ListaMovimentacaoAdapter(Context context, LinkedList listaDeMovimentacoes) {
+        this.context = context;
+        this.listaDeMovimentacoes = listaDeMovimentacoes;
+    }
 
     @NonNull
     @Override
@@ -22,16 +35,23 @@ public class ListaMovimentacaoAdapter extends RecyclerView.Adapter<ListaMoviment
 
     @Override
     public void onBindViewHolder(@NonNull ListaMovimentacaoViewHolder holder, int position) {
+        umaMovimentacao = listaDeMovimentacoes.get(position);
+
+        String id = umaMovimentacao.get_id();
+        String conta = umaMovimentacao.getContas().get(0);
+        String transacao = umaMovimentacao.getTransacao();
+        double valor = umaMovimentacao.getValor();
+
         holder.textCabecalho.setText("Movimentação");
-        holder.textTransacaoNumero.setText("Número: 1");
-        holder.textFavorecido.setText("Conta Destino: 1234");
-        holder.textTransacaoTipo.setText("Transação: Transferência");
-        holder.textTransacaoValor.setText("Valor: R$ 100,00");
+        holder.textTransacaoNumero.setText("Número: " + id);
+        holder.textFavorecido.setText("Conta Destino: " + conta);
+        holder.textTransacaoTipo.setText("Transação: " + transacao);
+        holder.textTransacaoValor.setText("Valor: R$ " + valor);
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return listaDeMovimentacoes.size();
     }
 
     static class ListaMovimentacaoViewHolder extends RecyclerView.ViewHolder {

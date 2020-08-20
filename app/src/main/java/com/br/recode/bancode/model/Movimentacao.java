@@ -11,13 +11,6 @@ public class Movimentacao {
     private String transacao;
     private double valor;
 
-    public Movimentacao(String _id, List<String> contas, String transacao, double valor) {
-        this._id = _id;
-        this.contas = contas;
-        this.transacao = transacao;
-        this.valor = valor;
-    }
-
     public String get_id() {
         return _id;
     }
