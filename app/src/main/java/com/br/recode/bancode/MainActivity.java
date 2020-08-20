@@ -38,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.body() == null) {
-                            // ? response.message();
                             resposta.setText("Cliente inexistente ou senha inválida.");
                         } else {
                             User usuario = response.body();
-                            resposta.setText(usuario.toString());
                             Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
                             intent.putExtra("user", usuario);
                             startActivity(intent);
