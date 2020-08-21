@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.br.recode.bancode">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MovimentacaoActivity"></activity>
+        <activity android:name=".ListaContasActivity"></activity>
+        <activity android:name=".ListaMovimentacoesActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,19 +26,18 @@
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".ClienteActivity"
-            android:label="Área do cliente">
-        </activity>
+            android:label="Área do cliente"></activity>
         <activity
             android:name=".EditarClienteActivity"
             android:label="Editar dados"
             android:parentActivityName=".ClienteActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ClienteActivity"/>
+                android:value=".ClienteActivity" />
         </activity>
     </application>
 

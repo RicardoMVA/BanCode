@@ -14,27 +14,27 @@ import com.br.recode.bancode.model.Movimentacao;
 
 import java.util.LinkedList;
 
-public class ListaMovimentacaoAdapter extends RecyclerView.Adapter<ListaMovimentacaoAdapter.ListaMovimentacaoViewHolder> {
+public class ListaMovimentacoesAdapter extends RecyclerView.Adapter<ListaMovimentacoesAdapter.ListaMovimentacoesViewHolder> {
 
     private Context context;
     private LinkedList<Movimentacao> listaDeMovimentacoes;
     private Movimentacao umaMovimentacao;
 
-    public ListaMovimentacaoAdapter(Context context, LinkedList listaDeMovimentacoes) {
+    public ListaMovimentacoesAdapter(Context context, LinkedList listaDeMovimentacoes) {
         this.context = context;
         this.listaDeMovimentacoes = listaDeMovimentacoes;
     }
 
     @NonNull
     @Override
-    public ListaMovimentacaoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListaMovimentacoesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movimentacao, parent, false);
 
-        return new ListaMovimentacaoViewHolder(view);
+        return new ListaMovimentacoesViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListaMovimentacaoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListaMovimentacoesViewHolder holder, int position) {
         umaMovimentacao = listaDeMovimentacoes.get(position);
 
         String id = umaMovimentacao.get_id();
@@ -54,7 +54,7 @@ public class ListaMovimentacaoAdapter extends RecyclerView.Adapter<ListaMoviment
         return listaDeMovimentacoes.size();
     }
 
-    static class ListaMovimentacaoViewHolder extends RecyclerView.ViewHolder {
+    static class ListaMovimentacoesViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textCabecalho;
         private TextView textTransacaoNumero;
@@ -62,7 +62,7 @@ public class ListaMovimentacaoAdapter extends RecyclerView.Adapter<ListaMoviment
         private TextView textTransacaoTipo;
         private TextView textTransacaoValor;
 
-        public ListaMovimentacaoViewHolder(@NonNull View itemView) {
+        public ListaMovimentacoesViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textCabecalho = itemView.findViewById(R.id.text_cabecalho_movimentacao);

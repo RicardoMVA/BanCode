@@ -1,5 +1,8 @@
 package com.br.recode.bancode.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"createdAt", "updatedAt", "__v"})
 public class Conta {
     private String _id;
     private int bank_branch;

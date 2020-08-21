@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/text_cabecalho_contas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conta"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/text_agencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agência:"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/text_conta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conta:"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/text_user_cpf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CPF:"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/text_saldo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saldo:"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+</LinearLayout>

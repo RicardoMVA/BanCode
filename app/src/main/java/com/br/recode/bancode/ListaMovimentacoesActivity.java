@@ -6,19 +6,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.br.recode.bancode.adapter.ListaMovimentacaoAdapter;
-
-public class MovimentacaoActivity extends AppCompatActivity {
+public class ListaMovimentacoesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movimentacao);
+        setContentView(R.layout.activity_movimentacoes_lista);
 
-        RecyclerView recyclerMovimentacao = findViewById(R.id.recycler_movimentacao);
+        RecyclerView recyclerListaMovimentacoes = findViewById(R.id.recycler_movimentacoes);
 
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerMovimentacao.setLayoutManager(linearLayoutManager);
-//        recyclerMovimentacao.setAdapter(new ListaMovimentacaoAdapter());
+        recyclerListaMovimentacoes.setLayoutManager(linearLayoutManager);
+//      recyclerListaMovimentacoes.setAdapter(new ListaMovimentacoesAdapter());
     }
 }
