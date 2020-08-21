@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.br.recode.bancode.R;
 import com.br.recode.bancode.model.Conta;
 
+import org.w3c.dom.Text;
+
 import java.util.LinkedList;
 
 public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.ListaContasViewHolder> {
@@ -44,6 +46,7 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
         double saldo = umaConta.getAccount_balance();
 
         holder.textCabecalho.setText("Movimentação");
+        holder.textContaID.setText("ID: " + id);
         holder.textAgencia.setText("Agência: " + agencia);
         holder.textConta.setText("Conta: " + conta);
         holder.textUserCpf.setText("CPF: " + userCpf);
@@ -58,6 +61,7 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
     static class ListaContasViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textCabecalho;
+        private TextView textContaID;
         private TextView textAgencia;
         private TextView textConta;
         private TextView textUserCpf;
@@ -67,6 +71,7 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
             super(itemView);
 
             textCabecalho = itemView.findViewById(R.id.text_cabecalho_contas);
+            textContaID = itemView.findViewById(R.id.text_conta_id);
             textAgencia = itemView.findViewById(R.id.text_agencia);
             textConta = itemView.findViewById(R.id.text_conta);
             textUserCpf = itemView.findViewById(R.id.text_user_cpf);

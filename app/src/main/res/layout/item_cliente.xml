@@ -7,40 +7,32 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/text_cabecalho_contas"
+        android:id="@+id/text_cabecalho_clientes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Conta"
+        android:text="Cliente"
         android:textColor="@android:color/black"
         android:textSize="25dp"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/text_conta_id"
+        android:id="@+id/text_cliente_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID:"
+        android:text="Número:"
         android:textColor="@android:color/black"
         android:textSize="15dp" />
 
     <TextView
-        android:id="@+id/text_agencia"
+        android:id="@+id/text_cliente_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agência:"
+        android:text="Nome:"
         android:textColor="@android:color/black"
         android:textSize="15dp" />
 
     <TextView
-        android:id="@+id/text_conta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Conta:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/text_user_cpf"
+        android:id="@+id/text_cliente_cpf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CPF:"
@@ -48,10 +40,26 @@
         android:textSize="15dp" />
 
     <TextView
-        android:id="@+id/text_saldo"
+        android:id="@+id/text_senha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saldo:"
+        android:text="Senha:"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/text_telefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefone:"
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/text_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avatar:"
         android:textColor="@android:color/black"
         android:textSize="15dp" />
 
