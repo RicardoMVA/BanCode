@@ -39,6 +39,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ClienteActivity" />
         </activity>
+        <activity
+            android:name=".EditarContaActivity"
+            android:label="Editar conta"
+            android:parentActivityName=".ClienteActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ClienteActivity" />
+        </activity>
     </application>
 
 </manifest>
