@@ -42,7 +42,7 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
         String id = umaConta.get_id();
         int agencia = umaConta.getBank_branch();
         int conta = umaConta.getCode();
-        String userCpf = umaConta.getCpf();
+        String userCpf = umaConta.getUser();
         double saldo = umaConta.getAccount_balance();
 
         holder.textCabecalho.setText("Movimentação");
