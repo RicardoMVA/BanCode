@@ -31,12 +31,23 @@ public class ClienteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente);
 
+        Context context = getApplicationContext();
+        Toast toast;
+
         TextView cabecalho = findViewById(R.id.cabecalho);
         Button botaoEditarDados = findViewById(R.id.botaoEditarDados);
         Button botaoCriarConta = findViewById(R.id.botaoCriarConta);
+        Button botaoEditarConta = findViewById(R.id.botaoEditarConta);
 
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
+        String mensagem = intent.getStringExtra("mensagem");
+
+        if (mensagem != null) {
+            toast = Toast.makeText(context, mensagem, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP, 0,200);
+            toast.show();
+        }
 
         cabecalho.setText("Olá " + usuario.getName() + "!");
 
@@ -87,6 +98,52 @@ public class ClienteActivity extends AppCompatActivity {
                         Toast toast;
 
                         toast = Toast.makeText(context, "Falha ao criar conta!", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.TOP, 0,200);
+                        toast.show();
+                    }
+                });
+            }
+        });
+
+        botaoEditarConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<Conta> call = new RetrofitConfig().getContaService().buscarConta(usuario.getCpf(), usuario.getPws());
+
+                call.enqueue(new Callback<Conta>() {
+                    @Override
+                    public void onResponse(Call<Conta> call, Response<Conta> response) {
+                        Context context = getApplicationContext();
+                        Toast toast;
+
+                        if (response.body() == null) {
+                            String erro = null;
+
+                            try {
+                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                erro = erro.replace("\"}", "");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.TOP, 0,200);
+                            toast.show();
+                        } else {
+                            Conta conta = response.body();
+                            Intent intent = new Intent(ClienteActivity.this, EditarContaActivity.class);
+                            intent.putExtra("user", usuario);
+                            intent.putExtra("conta", conta);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Conta> call, Throwable t) {
+                        Context context = getApplicationContext();
+                        Toast toast;
+
+                        toast = Toast.makeText(context, "Falha ao buscar conta!", Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.TOP, 0,200);
                         toast.show();
                     }
