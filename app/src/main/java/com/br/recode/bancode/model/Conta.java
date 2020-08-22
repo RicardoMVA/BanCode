@@ -9,7 +9,7 @@ public class Conta implements Serializable {
     private String _id;
     private int bank_branch;
     private int code;
-    private String cpf;
+    private String user;
     private double account_balance;
     private int status;
     private String createdAt;
@@ -39,12 +39,12 @@ public class Conta implements Serializable {
         this.code = code;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getUser() {
+        return user;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public double getAccount_balance() {
@@ -85,7 +85,7 @@ public class Conta implements Serializable {
                 "_id='" + _id + '\'' +
                 ", bank_branch=" + bank_branch +
                 ", code=" + code +
-                ", cpf=" + cpf +
+                ", user=" + user +
                 ", account_balance=" + account_balance +
                 ", status=" + status +
                 ", createdAt='" + createdAt + '\'' +
