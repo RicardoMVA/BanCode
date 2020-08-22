@@ -22,4 +22,8 @@ public interface ContaService {
     @Headers("Contenty-Type: application/json")
     @PUT("accounts/")
     Call<Void> editarConta(@Header("cpf") String cpf, @Header("pws") String pws, @Body Conta conta);
+
+    @Headers("Contenty-Type: application/json")
+    @PUT("accounts/cancel/")
+    Call<Void> apagarConta(@Header("cpf") String cpf, @Header("pws") String pws, @Header("account") int code);
 }

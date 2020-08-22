@@ -55,6 +55,48 @@ public class EditarContaActivity extends AppCompatActivity {
         botaoCancelarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                conta.setStatus(3);
+
+                Call<Void> call = new RetrofitConfig().getContaService().apagarConta(usuario.getCpf(), usuario.getPws(), conta.getCode());
+
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        Context context = getApplicationContext();
+                        Toast toast;
+
+                        if (response.errorBody() != null) {
+                            String erro = null;
+
+                            try {
+                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                erro = erro.replace("\"}", "");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.TOP, 0,200);
+                            toast.show();
+                        } else {
+                            String mensagem = "Edição realizada com sucesso!";
+                            Intent intent = new Intent(EditarContaActivity.this, ClienteActivity.class);
+                            intent.putExtra("user", usuario);
+                            intent.putExtra("mensagem", mensagem);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Context context = getApplicationContext();
+                        Toast toast;
+
+                        toast = Toast.makeText(context, "Falha ao editar a conta!", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.TOP, 0,200);
+                        toast.show();
+                    }
+                });
             }
         });
     }
