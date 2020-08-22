@@ -79,10 +79,4 @@
             android:background="@color/colorAccent"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/resultadoView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="15dp"/>
-
 </LinearLayout>

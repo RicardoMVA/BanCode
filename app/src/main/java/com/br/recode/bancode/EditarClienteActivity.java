@@ -7,7 +7,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +35,6 @@ public class EditarClienteActivity extends AppCompatActivity {
         final EditText telefoneInput = findViewById(R.id.telefoneInput);
         final EditText senhaInput = findViewById(R.id.senhaInput);
         Button botaoEdicao = findViewById(R.id.botaoEdicao);
-        final TextView resposta = findViewById(R.id.resultadoView);
 
         botaoEdicao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +68,10 @@ public class EditarClienteActivity extends AppCompatActivity {
                         toast.show();
                     } else {
                         User usuario = response.body();
+                        String mensagem = "Edição realizada com sucesso!";
                         Intent intent = new Intent(EditarClienteActivity.this, ClienteActivity.class);
                         intent.putExtra("user", usuario);
+                        intent.putExtra("mensagem", mensagem);
                         startActivity(intent);
                     }
                 }
