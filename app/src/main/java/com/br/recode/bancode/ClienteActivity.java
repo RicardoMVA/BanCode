@@ -16,6 +16,8 @@ import com.br.recode.bancode.model.NovaConta;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,7 +62,16 @@ public class ClienteActivity extends AppCompatActivity {
                         Toast toast;
 
                         if (response.body() == null) {
-                            toast = Toast.makeText(context, "Este usuário já possui uma conta!", Toast.LENGTH_LONG);
+                            String erro = null;
+
+                            try {
+                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                erro = erro.replace("\"}", "");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP, 0,200);
                             toast.show();
                         } else {
