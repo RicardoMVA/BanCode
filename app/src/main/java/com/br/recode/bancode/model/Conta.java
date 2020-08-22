@@ -2,8 +2,10 @@ package com.br.recode.bancode.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties({"createdAt", "updatedAt", "__v"})
-public class Conta {
+public class Conta implements Serializable {
     private String _id;
     private int bank_branch;
     private int code;
