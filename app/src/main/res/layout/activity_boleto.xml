@@ -10,86 +10,31 @@
     tools:context=".BoletoActivity">
 
     <TextView
-        android:id="@+id/cabecalho_boleto"
+        android:id="@+id/cabecalhoBoleto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Gerar boleto:"
         android:textSize="30dp"
         android:layout_marginBottom="30dp"/>
 
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/valorBoletoInput"
         android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Código do Boleto:"
-            android:textSize="20dp"
-            android:gravity="center" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="number"
+        android:digits="0123456789"
+        android:hint="Digite o valor do boleto"
+        android:layout_marginBottom="15dp"/>
 
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/senhaBoletoInput"
         android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/codigo_boleto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Valor:"
-            android:textSize="20dp"
-            android:gravity="center" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/valor_boleto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Senha:"
-            android:textSize="20dp"
-            android:gravity="center" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/senha_boleto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center"/>
-    </LinearLayout>
+        android:textSize="15sp"
+        android:inputType="text"
+        android:hint="Digite sua senha"
+        android:layout_marginBottom="15dp"/>
 
     <LinearLayout
         android:gravity="center"
@@ -97,13 +42,19 @@
         android:layout_width="match_parent"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/botao_confirmar_boleto"
+            android:id="@+id/botaoConfirmarBoleto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="37dp"
             android:text="Confirmar"
             android:background="@color/colorAccent"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/resultadoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15dp"/>
 
 </LinearLayout>
