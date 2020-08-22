@@ -10,7 +10,8 @@ public class Boleto {
 
     public String gerarCodigoBoleto(Conta conta ,double valor) {
         String numeroDaConta = String.format ("%07d", conta.getCode());
-        String valorDoBoleto = String.format ("%09d", valor);
+
+        String valorDoBoleto = String.format ("%09d", valor * 100);
 
         return codigoBoleto = numeroDaConta + valorDoBoleto;
     }
@@ -26,7 +27,7 @@ public class Boleto {
     public double getValorBoleto() {
         codigoBoleto = getCodigoBoleto();
 
-        int valorBoleto = Integer.valueOf(codigoBoleto.substring(8));
+        int valorBoleto = (Integer.valueOf(codigoBoleto.substring(8))) / 100;
 
         return valorBoleto;
     }
