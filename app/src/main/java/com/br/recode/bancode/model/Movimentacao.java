@@ -2,14 +2,15 @@ package com.br.recode.bancode.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
 import java.util.List;
 
 @JsonIgnoreProperties({"createdAt", "updatedAt", "__v"})
-public class Movimentacao {
+public class Movimentacao implements Serializable {
     private String _id;
-    private List<String> contas;
-    private String transacao;
-    private double valor;
+    private List<String> bank_account;
+    private int source_transaction;
+    private double amount;
 
     public String get_id() {
         return _id;
@@ -19,37 +20,37 @@ public class Movimentacao {
         this._id = _id;
     }
 
-    public List<String> getContas() {
-        return contas;
+    public List<String> getBank_account() {
+        return bank_account;
     }
 
-    public void setContas(List<String> contas) {
-        this.contas = contas;
+    public void setBank_account(List<String> bank_account) {
+        this.bank_account = bank_account;
     }
 
-    public String getTransacao() {
-        return transacao;
+    public int getSource_transaction() {
+        return source_transaction;
     }
 
-    public void setTransacao(String transacao) {
-        this.transacao = transacao;
+    public void setSource_transaction(int source_transaction) {
+        this.source_transaction = source_transaction;
     }
 
-    public double getValor() {
-        return valor;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     @Override
     public String toString() {
-        return "Movimentacoes{" +
+        return "Movimentacao{" +
                 "_id='" + _id + '\'' +
-                ", contas=" + contas +
-                ", transacao='" + transacao + '\'' +
-                ", valor=" + valor +
+                ", bank_account=" + bank_account +
+                ", source_transaction=" + source_transaction +
+                ", amount=" + amount +
                 '}';
     }
 }
