@@ -61,7 +61,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/botaoDeposito"
+            android:id="@+id/botaoGerarBoleto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"
@@ -82,11 +82,11 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/deposito" />
+                    android:src="@drawable/gerar_boleto" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DEPÓSITO"
+                    android:text="GERAR BOLETO"
                     android:textStyle="bold"
                     android:textAlignment="center" />
             </LinearLayout>
