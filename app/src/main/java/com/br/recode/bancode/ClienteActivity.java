@@ -36,9 +36,13 @@ public class ClienteActivity extends AppCompatActivity {
         Toast toast;
 
         TextView cabecalho = findViewById(R.id.cabecalho);
-        CardView botaoEditarDados = findViewById(R.id.botaoEditarDados);
+
         CardView botaoCriarConta = findViewById(R.id.botaoCriarConta);
         CardView botaoEditarConta = findViewById(R.id.botaoEditarConta);
+        CardView botaoTransacoes = findViewById(R.id.botaoTransacoes);
+        CardView botaoMovimentacoes = findViewById(R.id.botaoMovimentacoes);
+        CardView botaoEditarDados = findViewById(R.id.botaoEditarDados);
+        CardView botaoSair = findViewById(R.id.botaoEditarConta);
 
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
@@ -50,7 +54,7 @@ public class ClienteActivity extends AppCompatActivity {
             toast.show();
         }
 
-        cabecalho.setText("Olá " + usuario.getName() + "!");
+        cabecalho.setText("Olá, " + usuario.getName() + "!");
 
         botaoEditarDados.setOnClickListener(new View.OnClickListener() {
             @Override

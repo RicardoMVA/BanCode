@@ -26,7 +26,7 @@
         android:layout_below="@id/cabecalho"
         android:rowCount="1"
         android:columnCount="1"
-        android:layout_margin="50dp"
+        android:layout_margin="15dp"
         >
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginTop="20dp"
                     android:text="CLIENTES"
                     android:textColor="#003257"
                     android:textSize="30sp"
@@ -60,7 +60,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_clientes_lista"
-                    android:layout_width="280dp"
+                    android:layout_width="350dp"
                     android:layout_height="match_parent"
                     android:scrollbars="vertical"
                     tools:listitem="@layout/item_cliente" />
