@@ -10,18 +10,38 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.br.recode.bancode.R;
-import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.User;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdapter.ListaClientesViewHolder> {
 
     private Context context;
-    private LinkedList<User> listaDeClientes;
+    private ArrayList<User> listaDeClientes;
     private User umCliente;
 
-    public ListaClientesAdapter(Context context, LinkedList listaDeClientes) {
+    static class ListaClientesViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView textID;
+        private TextView textNome;
+        private TextView textCpf;
+        private TextView textSenha;
+        private TextView textTelefone;
+        private TextView textAvatar;
+
+        public ListaClientesViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            textID = itemView.findViewById(R.id.text_cliente_id);
+            textNome = itemView.findViewById(R.id.text_cliente_nome);
+            textCpf = itemView.findViewById(R.id.text_cliente_cpf);
+            textSenha = itemView.findViewById(R.id.text_senha);
+            textTelefone = itemView.findViewById(R.id.text_telefone);
+            textAvatar = itemView.findViewById(R.id.text_avatar);
+        }
+    }
+
+    public ListaClientesAdapter(Context context, ArrayList<User> listaDeClientes) {
         this.context = context;
         this.listaDeClientes = listaDeClientes;
     }
@@ -49,7 +69,7 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
         holder.textNome.setText("Nome: " + nome);
         holder.textCpf.setText("CPF: " + cpf);
         holder.textSenha.setText("Senha: " + senha);
-        holder.textTelefone.setText("Telefone: R$ " + telefone);
+        holder.textTelefone.setText("Telefone: " + telefone);
         holder.textAvatar.setText("Avatar: " + avatar);
     }
 
@@ -57,27 +77,4 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
     public int getItemCount() {
         return listaDeClientes.size();
     }
-
-    static class ListaClientesViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView textID;
-        private TextView textNome;
-        private TextView textCpf;
-        private TextView textSenha;
-        private TextView textTelefone;
-        private TextView textAvatar;
-
-        public ListaClientesViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            textID = itemView.findViewById(R.id.text_cliente_id);
-            textNome = itemView.findViewById(R.id.text_cliente_nome);
-            textCpf = itemView.findViewById(R.id.text_cliente_cpf);
-            textSenha = itemView.findViewById(R.id.text_senha);
-            textTelefone = itemView.findViewById(R.id.text_telefone);
-            textAvatar = itemView.findViewById(R.id.text_avatar);
-        }
-    }
-
-
 }

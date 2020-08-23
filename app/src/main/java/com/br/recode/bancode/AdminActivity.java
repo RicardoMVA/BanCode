@@ -60,7 +60,7 @@ public class AdminActivity extends AppCompatActivity {
                             Intent intent = new Intent(AdminActivity.this, ListaClientesActivity.class);
                             Bundle args = new Bundle();
                             args.putSerializable("ARRAYLIST", (Serializable) usuarios);
-                            intent.putExtra("usuarios", args);
+                            intent.putExtras(args);
                             startActivity(intent);
                         }
                     }

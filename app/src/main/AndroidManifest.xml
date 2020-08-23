@@ -11,8 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaContasActivity" />
-        <activity android:name=".ListaMovimentacoesActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,6 +49,10 @@
             android:name=".AdminActivity"
             android:label="Área administrativa">
         </activity>
+<!--    <activity android:name=".BoletoActivity" /> -->
+        <activity android:name=".ListaClientesActivity" />
+        <activity android:name=".ListaContasActivity" />
+        <activity android:name=".ListaMovimentacoesActivity" />
     </application>
 
 </manifest>
