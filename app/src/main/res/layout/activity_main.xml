@@ -22,8 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:inputType="number"
-        android:digits="0123456789"
+        android:inputType="textNoSuggestions"
         android:hint="@string/cpf_input_hint"/>
 
     <EditText
@@ -31,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:hint="@string/senha_input_hint"
         android:layout_marginBottom="30dp"/>
 
@@ -64,11 +63,5 @@
             android:text="Fazer cadastro"
             android:background="@color/colorAccent"/>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/resultadoView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="15dp"/>
 
 </LinearLayout>

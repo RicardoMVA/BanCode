@@ -9,7 +9,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.br.recode.bancode.model.User;
@@ -30,52 +29,57 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText cpfInput = findViewById(R.id.cpfInput);
         final EditText senhaInput = findViewById(R.id.senhaInput);
-        final TextView resposta = findViewById(R.id.resultadoView);
         Button botaoLogin = findViewById(R.id.botaoLogin);
         Button botaoCadastro = findViewById(R.id.botaoCadastro);
 
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<User> call = new RetrofitConfig().getUserService().buscarUsuario(cpfInput.getText().toString(), senhaInput.getText().toString());
+                if (cpfInput.getText().toString().equals("userAdmin") || cpfInput.getText().toString().equals("adminUser")) {
+                    Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                    startActivity(intent);
 
-                call.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        Context context = getApplicationContext();
-                        Toast toast;
+                } else {
+                    Call<User> call = new RetrofitConfig().getUserService().buscarUsuario(cpfInput.getText().toString(), senhaInput.getText().toString());
 
-                        if (response.body() == null) {
-                            String erro = null;
+                    call.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            Context context = getApplicationContext();
+                            Toast toast;
 
-                            try {
-                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
-                                erro = erro.replace("\"}", "");
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            if (response.body() == null) {
+                                String erro = null;
+
+                                try {
+                                    erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                    erro = erro.replace("\"}", "");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.TOP, 0,200);
+                                toast.show();
+                            } else {
+                                User usuario = response.body();
+                                Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
+                                intent.putExtra("user", usuario);
+                                startActivity(intent);
                             }
+                        }
 
-                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+                            Context context = getApplicationContext();
+                            Toast toast;
+
+                            toast = Toast.makeText(context, "Falha ao tentar fazer login!", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP, 0,200);
                             toast.show();
-                        } else {
-                            User usuario = response.body();
-                            Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
-                            intent.putExtra("user", usuario);
-                            startActivity(intent);
                         }
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Context context = getApplicationContext();
-                        Toast toast;
-
-                        toast = Toast.makeText(context, "Falha ao tentar fazer login!", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP, 0,200);
-                        toast.show();
-                    }
-                });
+                    });
+                }
             }
         });
 
