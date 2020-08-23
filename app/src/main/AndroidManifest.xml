@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaContasActivity"></activity>
+        <activity android:name=".BoletoActivity"></activity>
+        <activity android:name=".ListaContasActivity" />
         <activity android:name=".ListaMovimentacoesActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -30,7 +31,7 @@
         </activity>
         <activity
             android:name=".ClienteActivity"
-            android:label="Área do cliente"></activity>
+            android:label="Área do cliente" />
         <activity
             android:name=".EditarClienteActivity"
             android:label="Editar dados"
