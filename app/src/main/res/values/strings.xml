@@ -5,4 +5,6 @@
     <string name="nome_input_hint">Digite seu nome completo</string>
     <string name="avatar_input_hint">Digite a URL da sua foto</string>
     <string name="telefone_input_hint">Digite seu telefone</string>
+    <string name="conta_destino_hint">Conta destino</string>
+    <string name="valor_input_hint">Valor</string>
 </resources>

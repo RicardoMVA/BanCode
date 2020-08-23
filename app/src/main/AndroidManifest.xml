@@ -26,6 +26,7 @@
         <activity android:name=".ListaClientesActivity" />
         <activity android:name=".ListaContasActivity" />
         <activity android:name=".TransacoesActivity"/>
+        <activity android:name=".TransferenciaActivity"/>
         <activity android:name=".ListaMovimentacoesActivity" />
         <!--    <activity android:name=".BoletoActivity" /> -->
     </application>
