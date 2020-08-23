@@ -2,7 +2,7 @@ package com.br.recode.bancode.util;
 
 import com.br.recode.bancode.model.User;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -25,5 +25,5 @@ public interface UserService {
     Call<User> editarUsuario(@Body User user);
 
     @GET("getAllUsers/")
-    Call<List<User>> buscarTodosUsuarios(@Header("cpf") String userAdmin, @Header("pws") String pws);
+    Call<ArrayList<User>> buscarTodosUsuarios(@Header("cpf") String userAdmin, @Header("pws") String pws);
 }
