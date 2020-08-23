@@ -62,7 +62,7 @@ public class AdminActivity extends AppCompatActivity {
                             ArrayList<User> usuarios = response.body();
                             Intent intent = new Intent(AdminActivity.this, ListaClientesActivity.class);
                             Bundle args = new Bundle();
-                            args.putSerializable("ARRAYLIST", (Serializable) usuarios);
+                            args.putSerializable("ARRAYLIST", usuarios);
                             intent.putExtras(args);
                             startActivity(intent);
                         }
@@ -109,7 +109,7 @@ public class AdminActivity extends AppCompatActivity {
                             ArrayList<Conta> contas = response.body();
                             Intent intent = new Intent(AdminActivity.this, ListaContasActivity.class);
                             Bundle args = new Bundle();
-                            args.putSerializable("ARRAYLIST", (Serializable) contas);
+                            args.putSerializable("ARRAYLIST", contas);
                             intent.putExtras(args);
                             startActivity(intent);
                         }
