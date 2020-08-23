@@ -1,64 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="50dp"
-    android:gravity="center"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
     tools:context=".EditarContaActivity">
 
     <TextView
         android:id="@+id/cabecalho"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:layout_marginBottom="30dp"/>
+        android:layout_centerHorizontal="true"
+        android:text="BANCODE"
+        android:textColor="#fff"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        />
 
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
+    <GridLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/botaoAtivarConta"
+        android:layout_height="match_parent"
+        android:layout_below="@id/cabecalho"
+        android:rowCount="1"
+        android:columnCount="1"
+        android:layout_margin="50dp"
+        >
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:paddingHorizontal="20dp"
-            android:text="Ativar"
-            android:background="@color/colorAccent"/>
-    </LinearLayout>
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center_horizontal" >
 
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/botaoDesativarConta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:paddingHorizontal="20dp"
-            android:text="Desativar"
-            android:background="@color/colorAccent"/>
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="EDITAR CONTA"
+                    android:textColor="#03BB85"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="35dp"
+                    />
 
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/botaoCancelarConta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:paddingHorizontal="20dp"
-            android:text="Cancelar"
-            android:background="@color/colorAccent"/>
-    </LinearLayout>
+                <Button
+                    android:id="@+id/botaoAtivarConta"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:paddingHorizontal="37dp"
+                    android:text="ATIVAR"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
-</LinearLayout>
+                <Button
+                    android:id="@+id/botaoDesativarConta"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:paddingHorizontal="37dp"
+                    android:text="DESATIVAR"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/botaoCancelarConta"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:paddingHorizontal="37dp"
+                    android:text="CANCELAR"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/resultadoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+</RelativeLayout>
