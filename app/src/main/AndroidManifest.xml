@@ -48,6 +48,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ClienteActivity" />
         </activity>
+        <activity
+            android:name=".AdminActivity"
+            android:label="Área administrativa">
+        </activity>
     </application>
 
 </manifest>
