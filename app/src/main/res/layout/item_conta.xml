@@ -7,52 +7,43 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/text_cabecalho_contas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Conta"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
-
-    <TextView
         android:id="@+id/text_conta_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ID:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_agencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Agência:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_conta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Conta:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_user_cpf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CPF:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_saldo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Saldo:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 </LinearLayout>

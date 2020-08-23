@@ -15,7 +15,7 @@ public class ListaContasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contas_lista);
 
-        RecyclerView recyclerListaContas = findViewById(R.id.recycler_contas);
+        RecyclerView recyclerListaContas = findViewById(R.id.recycler_contas_lista);
 
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerListaContas.setLayoutManager(linearLayoutManager);

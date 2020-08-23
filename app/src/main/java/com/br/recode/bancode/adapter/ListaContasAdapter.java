@@ -45,7 +45,6 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
         String userCpf = umaConta.getUser();
         double saldo = umaConta.getAccount_balance();
 
-        holder.textCabecalho.setText("Movimentação");
         holder.textContaID.setText("ID: " + id);
         holder.textAgencia.setText("Agência: " + agencia);
         holder.textConta.setText("Conta: " + conta);
@@ -60,7 +59,6 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
 
     static class ListaContasViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textCabecalho;
         private TextView textContaID;
         private TextView textAgencia;
         private TextView textConta;
@@ -70,7 +68,6 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
         public ListaContasViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textCabecalho = itemView.findViewById(R.id.text_cabecalho_contas);
             textContaID = itemView.findViewById(R.id.text_conta_id);
             textAgencia = itemView.findViewById(R.id.text_agencia);
             textConta = itemView.findViewById(R.id.text_conta);
