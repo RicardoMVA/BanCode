@@ -40,9 +40,8 @@ public class ClienteActivity extends AppCompatActivity {
         CardView botaoCriarConta = findViewById(R.id.botaoCriarConta);
         CardView botaoEditarConta = findViewById(R.id.botaoEditarConta);
         CardView botaoTransacoes = findViewById(R.id.botaoTransacoes);
-        CardView botaoMovimentacoes = findViewById(R.id.botaoMovimentacoes);
         CardView botaoEditarDados = findViewById(R.id.botaoEditarDados);
-        CardView botaoSair = findViewById(R.id.botaoEditarConta);
+        CardView botaoSair = findViewById(R.id.botaoSair);
 
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
@@ -153,6 +152,15 @@ public class ClienteActivity extends AppCompatActivity {
                         toast.show();
                     }
                 });
+            }
+        });
+
+        botaoTransacoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ClienteActivity.this, TransacoesActivity.class);
+                intent.putExtra("user", usuario);
+                startActivity(intent);
             }
         });
     };

@@ -18,41 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CadastroActivity"
-            android:label="Cadastro de usuário"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity
-            android:name=".ClienteActivity"
-            android:label="Área do cliente" />
-        <activity
-            android:name=".EditarClienteActivity"
-            android:label="Editar dados"
-            android:parentActivityName=".ClienteActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ClienteActivity" />
-        </activity>
-        <activity
-            android:name=".EditarContaActivity"
-            android:label="Editar conta"
-            android:parentActivityName=".ClienteActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ClienteActivity" />
-        </activity>
-        <activity
-            android:name=".AdminActivity"
-            android:label="Área administrativa">
-        </activity>
-<!--    <activity android:name=".BoletoActivity" /> -->
+        <activity android:name=".CadastroActivity"/>
+        <activity android:name=".ClienteActivity"/>
+        <activity android:name=".EditarClienteActivity"/>
+        <activity android:name=".EditarContaActivity"/>
+        <activity android:name=".AdminActivity"/>
         <activity android:name=".ListaClientesActivity" />
         <activity android:name=".ListaContasActivity" />
+        <activity android:name=".TransacoesActivity"/>
         <activity android:name=".ListaMovimentacoesActivity" />
+        <!--    <activity android:name=".BoletoActivity" /> -->
     </application>
 
 </manifest>
