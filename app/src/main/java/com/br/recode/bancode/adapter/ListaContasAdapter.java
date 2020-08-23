@@ -12,17 +12,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.br.recode.bancode.R;
 import com.br.recode.bancode.model.Conta;
 
-import org.w3c.dom.Text;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.ListaContasViewHolder> {
 
     private Context context;
-    private LinkedList<Conta> listaDeContas;
+    private ArrayList<Conta> listaDeContas;
     private Conta umaConta;
 
-    public ListaContasAdapter(Context context, LinkedList listaDeContas) {
+    static class ListaContasViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView textContaID;
+        private TextView textAgencia;
+        private TextView textConta;
+        private TextView textUserId;
+        private TextView textSaldo;
+
+        public ListaContasViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            textContaID = itemView.findViewById(R.id.text_conta_id);
+            textAgencia = itemView.findViewById(R.id.text_agencia);
+            textConta = itemView.findViewById(R.id.text_conta);
+            textUserId = itemView.findViewById(R.id.text_user_id);
+            textSaldo = itemView.findViewById(R.id.text_saldo);
+        }
+    }
+
+    public ListaContasAdapter(Context context, ArrayList listaDeContas) {
         this.context = context;
         this.listaDeContas = listaDeContas;
     }
@@ -40,41 +57,20 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
         umaConta = listaDeContas.get(position);
 
         String id = umaConta.get_id();
-        int agencia = umaConta.getBank_branch();
-        int conta = umaConta.getCode();
-        String userCpf = umaConta.getUser();
-        double saldo = umaConta.getAccount_balance();
+        Integer agencia = umaConta.getBank_branch();
+        Integer conta = umaConta.getCode();
+        String userId = umaConta.getUser();
+        Double saldo = umaConta.getAccount_balance();
 
         holder.textContaID.setText("ID: " + id);
-        holder.textAgencia.setText("Agência: " + agencia);
-        holder.textConta.setText("Conta: " + conta);
-        holder.textUserCpf.setText("CPF: " + userCpf);
-        holder.textSaldo.setText("Saldo: R$ " + saldo);
+        holder.textAgencia.setText("Agência: " + agencia.toString());
+        holder.textConta.setText("Conta: " + conta.toString());
+        holder.textUserId.setText("ID do Cliente: " + userId);
+        holder.textSaldo.setText("Saldo: R$ " + saldo.toString());
     }
 
     @Override
     public int getItemCount() {
         return listaDeContas.size();
     }
-
-    static class ListaContasViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView textContaID;
-        private TextView textAgencia;
-        private TextView textConta;
-        private TextView textUserCpf;
-        private TextView textSaldo;
-
-        public ListaContasViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            textContaID = itemView.findViewById(R.id.text_conta_id);
-            textAgencia = itemView.findViewById(R.id.text_agencia);
-            textConta = itemView.findViewById(R.id.text_conta);
-            textUserCpf = itemView.findViewById(R.id.text_user_cpf);
-            textSaldo = itemView.findViewById(R.id.text_saldo);
-        }
-    }
-
-
 }
