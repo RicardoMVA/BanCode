@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.NovaConta;
@@ -35,9 +36,9 @@ public class ClienteActivity extends AppCompatActivity {
         Toast toast;
 
         TextView cabecalho = findViewById(R.id.cabecalho);
-        Button botaoEditarDados = findViewById(R.id.botaoEditarDados);
-        Button botaoCriarConta = findViewById(R.id.botaoCriarConta);
-        Button botaoEditarConta = findViewById(R.id.botaoEditarConta);
+        CardView botaoEditarDados = findViewById(R.id.botaoEditarDados);
+        CardView botaoCriarConta = findViewById(R.id.botaoCriarConta);
+        CardView botaoEditarConta = findViewById(R.id.botaoEditarConta);
 
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
