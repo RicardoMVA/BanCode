@@ -3,6 +3,8 @@ package com.br.recode.bancode.util;
 import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.NovaConta;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -26,4 +28,7 @@ public interface ContaService {
     @Headers("Contenty-Type: application/json")
     @PUT("accounts/cancel/")
     Call<Void> apagarConta(@Header("cpf") String cpf, @Header("pws") String pws, @Header("account") int code);
+
+    @GET("getAllAccounts/")
+    Call<ArrayList<Conta>> buscarTodasContas(@Header("cpf") String adminUser, @Header("pws") String pws);
 }
