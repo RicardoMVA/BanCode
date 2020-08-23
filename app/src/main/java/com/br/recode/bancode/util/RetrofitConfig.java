@@ -20,4 +20,8 @@ public class RetrofitConfig {
     public ContaService getContaService() {
         return this.retrofit.create(ContaService.class);
     }
+
+    public TransacaoService getTransacaoService() {
+        return this.retrofit.create(TransacaoService.class);
+    }
 }
