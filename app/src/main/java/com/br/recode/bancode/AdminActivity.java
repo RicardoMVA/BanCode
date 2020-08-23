@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
 
@@ -81,8 +82,47 @@ public class AdminActivity extends AppCompatActivity {
         botaoVerContas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(AdminActivity.this, ListaContasActivity.class);
-//                startActivity(intent);
+                Call<ArrayList<Conta>> call = new RetrofitConfig().getContaService().buscarTodasContas("adminUser", "123456");
+
+                call.enqueue(new Callback<ArrayList<Conta>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<Conta>> call, Response<ArrayList<Conta>> response) {
+                        Context context = getApplicationContext();
+                        Toast toast;
+
+                        if (response.body() == null) {
+                            String erro = null;
+
+                            try {
+                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                erro = erro.replace("\"}", "");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.TOP, 0,200);
+                            toast.show();
+                        } else {
+                            ArrayList<Conta> contas = response.body();
+                            Intent intent = new Intent(AdminActivity.this, ListaContasActivity.class);
+                            Bundle args = new Bundle();
+                            args.putSerializable("ARRAYLIST", (Serializable) contas);
+                            intent.putExtras(args);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<Conta>> call, Throwable t) {
+                        Context context = getApplicationContext();
+                        Toast toast;
+
+                        toast = Toast.makeText(context, "Falha ao tentar carregar a lista!", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.TOP, 0,200);
+                        toast.show();
+                    }
+                });
             }
         });
     }
