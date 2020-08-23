@@ -7,44 +7,35 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/text_cabecalho_movimentacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Movimentação"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
-
-    <TextView
         android:id="@+id/text_transacao_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Número:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_favorecido_conta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Favorecido:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_transacao_tipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Transação:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_valor_movimentacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Valor:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 </LinearLayout>

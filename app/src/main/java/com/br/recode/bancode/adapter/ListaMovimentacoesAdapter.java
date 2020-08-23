@@ -42,7 +42,6 @@ public class ListaMovimentacoesAdapter extends RecyclerView.Adapter<ListaMovimen
         String transacao = umaMovimentacao.getTransacao();
         double valor = umaMovimentacao.getValor();
 
-        holder.textCabecalho.setText("Movimentação");
         holder.textTransacaoNumero.setText("Número: " + id);
         holder.textFavorecido.setText("Conta Destino: " + conta);
         holder.textTransacaoTipo.setText("Transação: " + transacao);
@@ -56,7 +55,6 @@ public class ListaMovimentacoesAdapter extends RecyclerView.Adapter<ListaMovimen
 
     static class ListaMovimentacoesViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textCabecalho;
         private TextView textTransacaoNumero;
         private TextView textFavorecido;
         private TextView textTransacaoTipo;
@@ -65,7 +63,6 @@ public class ListaMovimentacoesAdapter extends RecyclerView.Adapter<ListaMovimen
         public ListaMovimentacoesViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textCabecalho = itemView.findViewById(R.id.text_cabecalho_movimentacao);
             textTransacaoNumero = itemView.findViewById(R.id.text_transacao_id);
             textFavorecido = itemView.findViewById(R.id.text_favorecido_conta);
             textTransacaoTipo = itemView.findViewById(R.id.text_transacao_tipo);

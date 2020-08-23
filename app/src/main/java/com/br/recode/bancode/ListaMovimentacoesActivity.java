@@ -13,7 +13,7 @@ public class ListaMovimentacoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movimentacoes_lista);
 
-        RecyclerView recyclerListaMovimentacoes = findViewById(R.id.recycler_movimentacoes);
+        RecyclerView recyclerListaMovimentacoes = findViewById(R.id.recycler_movimentacoes_lista);
 
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerListaMovimentacoes.setLayoutManager(linearLayoutManager);
