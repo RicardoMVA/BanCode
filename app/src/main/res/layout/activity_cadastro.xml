@@ -1,88 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="50dp"
-    android:gravity="center"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
     tools:context=".CadastroActivity">
 
     <TextView
         android:id="@+id/cabecalho"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Novo cadastro:"
-        android:textSize="30dp"
-        android:layout_marginBottom="30dp"/>
+        android:layout_centerHorizontal="true"
+        android:text="BANCODE"
+        android:textColor="#fff"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        />
 
-    <EditText
-        android:id="@+id/cpfInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:inputType="number"
-        android:digits="0123456789"
-        android:hint="@string/cpf_input_hint"
-        android:layout_marginBottom="15dp"/>
-
-    <EditText
-        android:id="@+id/nomeInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:inputType="text"
-        android:hint="@string/nome_input_hint"
-        android:layout_marginBottom="15dp"/>
-
-    <EditText
-        android:id="@+id/avatarInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:inputType="text"
-        android:hint="@string/avatar_input_hint"
-        android:layout_marginBottom="15dp"/>
-
-    <EditText
-        android:id="@+id/telefoneInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:inputType="number"
-        android:digits="0123456789"
-        android:hint="@string/telefone_input_hint"
-        android:layout_marginBottom="15dp"/>
-
-    <EditText
-        android:id="@+id/senhaInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:inputType="text"
-        android:hint="@string/senha_input_hint"
-        android:layout_marginBottom="30dp"/>
-
-    <LinearLayout
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/botaoCadastro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:paddingHorizontal="37dp"
-            android:text="Fazer cadastro"
-            android:background="@color/colorAccent"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/resultadoView"
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="15dp"/>
+        android:layout_below="@id/cabecalho"
+        android:rowCount="1"
+        android:columnCount="1"
+        android:layout_margin="50dp"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center_horizontal" >
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="NOVO CADASTRO"
+                    android:textColor="#03BB85"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <EditText
+                    android:id="@+id/cpfInput"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:hint="@string/cpf_input_hint"
+                    android:inputType="number"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/nomeInput"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nome_input_hint"
+                    android:inputType="text"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/avatarInput"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/avatar_input_hint"
+                    android:inputType="text"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/telefoneInput"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:hint="@string/telefone_input_hint"
+                    android:inputType="number"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/senhaInput"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/senha_input_hint"
+                    android:inputType="text"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+
+                <Button
+                    android:id="@+id/botaoCadastro"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:paddingHorizontal="37dp"
+                    android:text="CONFIRMAR"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"/>
+                />
+
+                <TextView
+                    android:id="@+id/resultadoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+</RelativeLayout>
