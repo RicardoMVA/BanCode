@@ -66,7 +66,7 @@ public class ListaContasAdapter extends RecyclerView.Adapter<ListaContasAdapter.
         holder.textAgencia.setText("Agência: " + agencia.toString());
         holder.textConta.setText("Conta: " + conta.toString());
         holder.textUserId.setText("ID do Cliente: " + userId);
-        holder.textSaldo.setText("Saldo: R$ " + saldo.toString());
+        holder.textSaldo.setText("Saldo: R$ " + String.format("%.2f", saldo));
     }
 
     @Override
