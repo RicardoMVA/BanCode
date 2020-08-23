@@ -7,60 +7,51 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/text_cabecalho_clientes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cliente"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
-
-    <TextView
         android:id="@+id/text_cliente_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Número:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_cliente_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_cliente_cpf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CPF:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/text_senha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senha:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/text_telefone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telefone:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Avatar:"
-        android:textColor="@android:color/black"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_telefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefone:"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_senha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha:"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 </LinearLayout>

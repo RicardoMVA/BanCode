@@ -45,7 +45,6 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
         String telefone = umCliente.getTelefone();
         String avatar = umCliente.getAvatar();
 
-        holder.textCabecalho.setText("Cliente");
         holder.textID.setText("ID: " + id);
         holder.textNome.setText("Nome: " + nome);
         holder.textCpf.setText("CPF: " + cpf);
@@ -61,7 +60,6 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
 
     static class ListaClientesViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textCabecalho;
         private TextView textID;
         private TextView textNome;
         private TextView textCpf;
@@ -72,7 +70,6 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
         public ListaClientesViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textCabecalho = itemView.findViewById(R.id.text_cabecalho_clientes);
             textID = itemView.findViewById(R.id.text_cliente_id);
             textNome = itemView.findViewById(R.id.text_cliente_nome);
             textCpf = itemView.findViewById(R.id.text_cliente_cpf);
