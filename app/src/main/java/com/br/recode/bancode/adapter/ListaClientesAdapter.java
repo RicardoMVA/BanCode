@@ -13,15 +13,16 @@ import com.br.recode.bancode.R;
 import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.User;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdapter.ListaClientesViewHolder> {
 
     private Context context;
-    private LinkedList<User> listaDeClientes;
+    private ArrayList<User> listaDeClientes;
     private User umCliente;
 
-    public ListaClientesAdapter(Context context, LinkedList listaDeClientes) {
+    public ListaClientesAdapter(Context context, ArrayList listaDeClientes) {
         this.context = context;
         this.listaDeClientes = listaDeClientes;
     }
@@ -78,6 +79,4 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
             textAvatar = itemView.findViewById(R.id.text_avatar);
         }
     }
-
-
 }

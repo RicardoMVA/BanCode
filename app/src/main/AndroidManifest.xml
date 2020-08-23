@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--    <activity android:name=".BoletoActivity"></activity>-->
         <activity android:name=".ListaContasActivity" />
         <activity android:name=".ListaMovimentacoesActivity" />
         <activity android:name=".MainActivity">
@@ -52,5 +53,4 @@
             android:label="Área administrativa">
         </activity>
     </application>
-
 </manifest>
