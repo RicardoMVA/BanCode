@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
@@ -28,8 +29,9 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        Button botaoVerClientes = findViewById(R.id.botaoVerClientes);
-        Button botaoVerContas = findViewById(R.id.botaoVerContas);
+        CardView botaoVerClientes = findViewById(R.id.botaoVerClientes);
+        CardView botaoVerContas = findViewById(R.id.botaoVerContas);
+        CardView botaoSair = findViewById(R.id.botaoSair);
 
         botaoVerClientes.setOnClickListener(new View.OnClickListener() {
             @Override
