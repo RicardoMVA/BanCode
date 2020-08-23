@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="CONTAS"
-                    android:textColor="#03BB85"
+                    android:textColor="#003257"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     android:layout_marginTop="35dp"
