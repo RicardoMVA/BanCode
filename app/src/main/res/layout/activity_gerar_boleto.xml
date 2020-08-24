@@ -26,7 +26,7 @@
         android:layout_below="@id/cabecalho"
         android:rowCount="1"
         android:columnCount="1"
-        android:layout_margin="50dp"
+        android:layout_margin="25dp"
         >
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
                     android:layout_marginTop="50dp"/>
 
                 <EditText
-                    android:id="@+id/senhaBoletoInput"
+                    android:id="@+id/senhaInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
@@ -80,6 +80,12 @@
                     android:textAlignment="center"
                     android:hint="@string/senha_input_hint"
                     android:layout_marginTop="20dp" />
+
+                <TextView
+                    android:id="@+id/resultadoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="15dp"/>
 
                 <Button
                     android:id="@+id/botaoConfirmarBoleto"
@@ -93,11 +99,6 @@
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/resultadoView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="15dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
