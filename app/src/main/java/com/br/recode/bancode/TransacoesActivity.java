@@ -55,7 +55,7 @@ public class TransacoesActivity extends AppCompatActivity {
         botaoGerarBoleto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TransacoesActivity.this, TransacoesActivity.class);
+                Intent intent = new Intent(TransacoesActivity.this, GerarBoletoActivity.class);
                 intent.putExtra("user", usuario);
                 intent.putExtra("conta", conta);
                 startActivity(intent);

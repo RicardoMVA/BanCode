@@ -1,17 +1,20 @@
 package com.br.recode.bancode.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"mensagem"})
 public class Transacao {
-    private String boleto;
+    private String codigo_de_barras;
     private double amount;
     private int origem;
     private int destino;
 
-    public String getBoleto() {
-        return boleto;
+    public String getCodigo_de_barras() {
+        return codigo_de_barras;
     }
 
-    public void setBoleto(String boleto) {
-        this.boleto = boleto;
+    public void setCodigo_de_barras(String codigo_de_barras) {
+        this.codigo_de_barras = codigo_de_barras;
     }
 
     public double getAmount() {
@@ -41,7 +44,7 @@ public class Transacao {
     @Override
     public String toString() {
         return "Transacao{" +
-                "boleto='" + boleto + '\'' +
+                "boleto='" + codigo_de_barras + '\'' +
                 ", amount=" + amount +
                 ", origem=" + origem +
                 ", destino=" + destino +

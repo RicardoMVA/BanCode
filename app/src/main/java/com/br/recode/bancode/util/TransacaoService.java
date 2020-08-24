@@ -16,12 +16,12 @@ import retrofit2.http.POST;
 
 public interface TransacaoService {
     @Headers("Contenty-Type: application/json")
-    @POST("transaction/gerar_boleto/")
-    Call<Boleto> gerarBoleto(@Header("account") String numeroConta, @Header("cpf") String cpf, @Header("pws") String pws, @Body Transacao transacao);
+    @POST("transaction/deposito/")
+    Call<Transacao> gerarBoleto(@Header("account") int numeroConta, @Header("cpf") String cpf, @Header("pws") String pws, @Body Transacao transacao);
 
     @Headers("Contenty-Type: application/json")
     @POST("transaction/pagamento/")
-    Call<Conta> pagarBoleto(@Header("account") String numeroConta, @Header("cpf") String cpf, @Header("pws") String pws, @Body Transacao transacao);
+    Call<Conta> pagarBoleto(@Header("account") int numeroConta, @Header("cpf") String cpf, @Header("pws") String pws, @Body Transacao transacao);
 
     @Headers("Contenty-Type: application/json")
     @POST("transaction/transferencia/")
