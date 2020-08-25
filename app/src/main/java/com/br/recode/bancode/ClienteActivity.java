@@ -18,6 +18,7 @@ import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +38,7 @@ public class ClienteActivity extends AppCompatActivity {
         Toast toast;
 
         TextView cabecalho = findViewById(R.id.cabecalho);
-
+        TextView saldo = findViewById(R.id.saldo);
         final CardView botaoCriarConta = findViewById(R.id.botaoCriarConta);
         final CardView botaoEditarConta = findViewById(R.id.botaoEditarConta);
         CardView botaoTransacoes = findViewById(R.id.botaoTransacoes);
@@ -61,6 +62,8 @@ public class ClienteActivity extends AppCompatActivity {
         }
 
         cabecalho.setText("Olá, " + usuario.getName() + "!");
+
+        saldo.setText("R$ " + new Double(conta.getAccount_balance()).toString());
 
         botaoEditarDados.setOnClickListener(new View.OnClickListener() {
             @Override

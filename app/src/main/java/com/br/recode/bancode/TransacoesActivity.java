@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class TransacoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transacoes);
 
+        TextView saldo = findViewById(R.id.saldo);
         CardView botaoTransferencia = findViewById(R.id.botaoTransferencia);
         CardView botaoGerarBoleto = findViewById(R.id.botaoGerarBoleto);
         CardView botaoPagamento = findViewById(R.id.botaoPagamento);
@@ -40,6 +42,8 @@ public class TransacoesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
         conta = (Conta) intent.getSerializableExtra("conta");
+
+        saldo.setText("R$ " + new Double(conta.getAccount_balance()).toString());
 
         botaoTransferencia.setOnClickListener(new View.OnClickListener() {
             @Override
