@@ -2,6 +2,7 @@ package com.br.recode.bancode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -34,7 +36,6 @@ public class CadastroActivity extends AppCompatActivity {
         final EditText telefoneInput = findViewById(R.id.telefoneInput);
         final EditText senhaInput = findViewById(R.id.senhaInput);
         Button botaoCadastro = findViewById(R.id.botaoCadastro);
-        final TextView resposta = findViewById(R.id.resultadoView);
 
         botaoCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +72,14 @@ public class CadastroActivity extends AppCompatActivity {
                         } else {
                             User usuario = response.body();
                             Intent intent = new Intent(CadastroActivity.this, ClienteActivity.class);
-                            intent.putExtra("user", usuario);
-                            intent.putExtra("conta", (Bundle) null);
+
+                            SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            Gson gson = new Gson();
+                            prefsEditor.putString("user", gson.toJson(usuario));
+                            prefsEditor.putString("conta", null);
+                            prefsEditor.commit();
+
                             startActivity(intent);
                         }
                     }

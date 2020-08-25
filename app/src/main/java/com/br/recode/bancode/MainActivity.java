@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                             Conta conta = response.body();
                                             Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
 
-                                            SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+                                            SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
                                             SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                             Gson gson = new Gson();
                                             prefsEditor.putString("user", gson.toJson(usuario));

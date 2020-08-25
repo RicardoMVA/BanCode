@@ -2,6 +2,7 @@ package com.br.recode.bancode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -31,9 +33,10 @@ public class EditarClienteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_cliente);
 
-        Intent intent = getIntent();
-        usuario = (User) intent.getSerializableExtra("user");
-        conta = (Conta) intent.getSerializableExtra("conta");
+        SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+        Gson gson = new Gson();
+        usuario = gson.fromJson(mPrefs.getString("user", ""), User.class);
+        conta = gson.fromJson(mPrefs.getString("conta", ""), Conta.class);
 
         final EditText cpfInput = findViewById(R.id.cpfInput);
         final EditText nomeInput = findViewById(R.id.nomeInput);
@@ -76,9 +79,14 @@ public class EditarClienteActivity extends AppCompatActivity {
                         User usuario = response.body();
                         String mensagem = "Edição realizada com sucesso!";
                         Intent intent = new Intent(EditarClienteActivity.this, ClienteActivity.class);
-                        intent.putExtra("user", usuario);
-                        intent.putExtra("conta", conta);
                         intent.putExtra("mensagem", mensagem);
+
+                        SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                        Gson gson = new Gson();
+                        prefsEditor.putString("user", gson.toJson(usuario));
+                        prefsEditor.commit();
+
                         startActivity(intent);
                     }
                 }

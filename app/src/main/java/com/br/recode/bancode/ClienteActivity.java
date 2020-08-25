@@ -55,9 +55,13 @@ public class ClienteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String mensagem = intent.getStringExtra("mensagem");
 
+        cabecalho.setText("Olá, " + usuario.getName() + "!");
+
         if (conta != null) {
             botaoCriarConta.setVisibility(View.INVISIBLE);
             botaoEditarConta.setVisibility(View.VISIBLE);
+
+            saldo.setText("R$ " + String.format("%.2f", conta.getAccount_balance()));
         }
 
         if (mensagem != null) {
@@ -66,16 +70,10 @@ public class ClienteActivity extends AppCompatActivity {
             toast.show();
         }
 
-        cabecalho.setText("Olá, " + usuario.getName() + "!");
-
-        saldo.setText("R$ " + String.format("%.2f", conta.getAccount_balance()));
-
         botaoEditarDados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ClienteActivity.this, EditarClienteActivity.class);
-                intent.putExtra("user", usuario);
-                intent.putExtra("conta", conta);
                 startActivity(intent);
             }
         });
@@ -106,11 +104,20 @@ public class ClienteActivity extends AppCompatActivity {
                             toast.setGravity(Gravity.TOP, 0,200);
                             toast.show();
                         } else {
+                            Conta conta = response.body();
+
+                            botaoCriarConta.setVisibility(View.INVISIBLE);
+                            botaoEditarConta.setVisibility(View.VISIBLE);
+
                             toast = Toast.makeText(context, "Conta criada com sucesso!", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP, 0,200);
                             toast.show();
-                            botaoCriarConta.setVisibility(View.INVISIBLE);
-                            botaoEditarConta.setVisibility(View.VISIBLE);
+
+                            SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            Gson gson = new Gson();
+                            prefsEditor.putString("conta", gson.toJson(conta));
+                            prefsEditor.commit();
                         }
                     }
 
@@ -130,92 +137,16 @@ public class ClienteActivity extends AppCompatActivity {
         botaoEditarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Conta> call = new RetrofitConfig().getContaService().buscarConta(usuario.getCpf(), usuario.getPws());
-
-                call.enqueue(new Callback<Conta>() {
-                    @Override
-                    public void onResponse(Call<Conta> call, Response<Conta> response) {
-                        Context context = getApplicationContext();
-                        Toast toast;
-
-                        if (response.body() == null) {
-                            String erro = null;
-
-                            try {
-                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
-                                erro = erro.replace("\"}", "");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.TOP, 0,200);
-                            toast.show();
-                        } else {
-                            Conta conta = response.body();
-                            Intent intent = new Intent(ClienteActivity.this, EditarContaActivity.class);
-                            intent.putExtra("user", usuario);
-                            intent.putExtra("conta", conta);
-                            startActivity(intent);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Conta> call, Throwable t) {
-                        Context context = getApplicationContext();
-                        Toast toast;
-
-                        toast = Toast.makeText(context, "Falha ao buscar conta!", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP, 0,200);
-                        toast.show();
-                    }
-                });
+                Intent intent = new Intent(ClienteActivity.this, EditarContaActivity.class);
+                startActivity(intent);
             }
         });
 
         botaoTransacoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Conta> call = new RetrofitConfig().getContaService().buscarConta(usuario.getCpf(), usuario.getPws());
-
-                call.enqueue(new Callback<Conta>() {
-                    @Override
-                    public void onResponse(Call<Conta> call, Response<Conta> response) {
-                        Context context = getApplicationContext();
-                        Toast toast;
-
-                        if (response.body() == null) {
-                            String erro = null;
-
-                            try {
-                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
-                                erro = erro.replace("\"}", "");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.TOP, 0,200);
-                            toast.show();
-                        } else {
-                            Conta conta = response.body();
-                            Intent intent = new Intent(ClienteActivity.this, TransacoesActivity.class);
-                            intent.putExtra("user", usuario);
-                            intent.putExtra("conta", conta);
-                            startActivity(intent);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Conta> call, Throwable t) {
-                        Context context = getApplicationContext();
-                        Toast toast;
-
-                        toast = Toast.makeText(context, "Falha ao buscar conta!", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP, 0,200);
-                        toast.show();
-                    }
-                });
+                Intent intent = new Intent(ClienteActivity.this, TransacoesActivity.class);
+                startActivity(intent);
             }
         });
     };

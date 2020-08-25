@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.br.recode.bancode.model.Movimentacao;
 import com.br.recode.bancode.model.Transacao;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,14 +43,15 @@ public class GerarBoletoActivity extends AppCompatActivity {
         Button botaoConfirmarBoleto = findViewById(R.id.botaoConfirmarBoleto);
         final TextView resultadoView = findViewById(R.id.resultadoView);
 
-        Intent intent = getIntent();
-        usuario = (User) intent.getSerializableExtra("user");
-        conta = (Conta) intent.getSerializableExtra("conta");
+        SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+        Gson gson = new Gson();
+        usuario = gson.fromJson(mPrefs.getString("user", ""), User.class);
+        conta = gson.fromJson(mPrefs.getString("conta", ""), Conta.class);
 
         botaoConfirmarBoleto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!senhaInput.getText().toString().equals(usuario.getPws().toString())) {
+                if (!senhaInput.getText().toString().equals(usuario.getPws())) {
                     Context context = getApplicationContext();
                     Toast toast;
 

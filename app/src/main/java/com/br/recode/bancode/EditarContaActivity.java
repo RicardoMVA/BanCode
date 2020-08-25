@@ -2,6 +2,7 @@ package com.br.recode.bancode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -31,9 +33,10 @@ public class EditarContaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_conta);
 
-        Intent intent = getIntent();
-        usuario = (User) intent.getSerializableExtra("user");
-        conta = (Conta) intent.getSerializableExtra("conta");
+        SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+        Gson gson = new Gson();
+        usuario = gson.fromJson(mPrefs.getString("user", ""), User.class);
+        conta = gson.fromJson(mPrefs.getString("conta", ""), Conta.class);
 
         TextView cabecalho = findViewById(R.id.cabecalho);
 
@@ -66,7 +69,6 @@ public class EditarContaActivity extends AppCompatActivity {
         botaoCancelarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                conta.setStatus(3);
 
                 Call<Void> call = new RetrofitConfig().getContaService().apagarConta(usuario.getCpf(), usuario.getPws(), conta.getCode());
 
@@ -92,9 +94,16 @@ public class EditarContaActivity extends AppCompatActivity {
                         } else {
                             String mensagem = "Edição realizada com sucesso!";
                             Intent intent = new Intent(EditarContaActivity.this, ClienteActivity.class);
-                            intent.putExtra("user", usuario);
-                            intent.putExtra("conta", conta);
                             intent.putExtra("mensagem", mensagem);
+
+                            conta.setStatus(3);
+
+                            SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            Gson gson = new Gson();
+                            prefsEditor.putString("conta", gson.toJson(conta));
+                            prefsEditor.commit();
+
                             startActivity(intent);
                         }
                     }
@@ -114,7 +123,6 @@ public class EditarContaActivity extends AppCompatActivity {
     }
 
     public void editarUsandoCodigo(View view, User user, Conta account, int status) {
-        final User usuario = user;
         final Conta conta = account;
         conta.setStatus(status);
 
@@ -142,9 +150,14 @@ public class EditarContaActivity extends AppCompatActivity {
                 } else {
                     String mensagem = "Edição realizada com sucesso!";
                     Intent intent = new Intent(EditarContaActivity.this, ClienteActivity.class);
-                    intent.putExtra("user", usuario);
-                    intent.putExtra("conta", conta);
                     intent.putExtra("mensagem", mensagem);
+
+                    SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                    Gson gson = new Gson();
+                    prefsEditor.putString("conta", gson.toJson(conta));
+                    prefsEditor.commit();
+
                     startActivity(intent);
                 }
             }
