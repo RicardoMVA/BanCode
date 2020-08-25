@@ -26,6 +26,7 @@ import retrofit2.Response;
 public class ClienteActivity extends AppCompatActivity {
 
     private User usuario;
+    private Conta conta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +38,21 @@ public class ClienteActivity extends AppCompatActivity {
 
         TextView cabecalho = findViewById(R.id.cabecalho);
 
-        CardView botaoCriarConta = findViewById(R.id.botaoCriarConta);
-        CardView botaoEditarConta = findViewById(R.id.botaoEditarConta);
+        final CardView botaoCriarConta = findViewById(R.id.botaoCriarConta);
+        final CardView botaoEditarConta = findViewById(R.id.botaoEditarConta);
         CardView botaoTransacoes = findViewById(R.id.botaoTransacoes);
         CardView botaoEditarDados = findViewById(R.id.botaoEditarDados);
         CardView botaoSair = findViewById(R.id.botaoSair);
 
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
+        conta = (Conta) intent.getSerializableExtra("conta");
         String mensagem = intent.getStringExtra("mensagem");
+
+        if (conta != null) {
+            botaoCriarConta.setVisibility(View.INVISIBLE);
+            botaoEditarConta.setVisibility(View.VISIBLE);
+        }
 
         if (mensagem != null) {
             toast = Toast.makeText(context, mensagem, Toast.LENGTH_LONG);
@@ -60,6 +67,7 @@ public class ClienteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ClienteActivity.this, EditarClienteActivity.class);
                 intent.putExtra("user", usuario);
+                intent.putExtra("conta", conta);
                 startActivity(intent);
             }
         });
@@ -93,6 +101,8 @@ public class ClienteActivity extends AppCompatActivity {
                             toast = Toast.makeText(context, "Conta criada com sucesso!", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP, 0,200);
                             toast.show();
+                            botaoCriarConta.setVisibility(View.INVISIBLE);
+                            botaoEditarConta.setVisibility(View.VISIBLE);
                         }
                     }
 
