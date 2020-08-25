@@ -61,7 +61,7 @@ public class ClienteActivity extends AppCompatActivity {
             botaoCriarConta.setVisibility(View.INVISIBLE);
             botaoEditarConta.setVisibility(View.VISIBLE);
 
-            saldo.setText("R$ " + String.format("%.2f", conta.getAccount_balance()));
+            saldo.setText("Saldo: R$ " + String.format("%.2f", conta.getAccount_balance()));
         }
 
         if (mensagem != null) {

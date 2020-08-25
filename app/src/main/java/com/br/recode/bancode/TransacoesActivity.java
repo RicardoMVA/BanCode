@@ -47,7 +47,7 @@ public class TransacoesActivity extends AppCompatActivity {
         conta = gson.fromJson(mPrefs.getString("conta", ""), Conta.class);
 
         if (conta != null) {
-            saldo.setText("R$ " + new Double(conta.getAccount_balance()).toString());
+            saldo.setText("Saldo: R$ " + String.format("%.2f", conta.getAccount_balance()));
 
             botaoTransferencia.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -70,10 +70,53 @@ public class TransferenciaActivity extends AppCompatActivity {
                             toast.setGravity(Gravity.TOP, 0,200);
                             toast.show();
                         } else {
-                            Intent intent = new Intent(TransferenciaActivity.this, ClienteActivity.class);
-                            String mensagem = "Transferência realizada com sucesso!";
-                            intent.putExtra("mensagem", mensagem);
-                            startActivity(intent);
+                            Call<Conta> call2 = new RetrofitConfig().getContaService().buscarConta(usuario.getCpf(), usuario.getPws());
+
+                            call2.enqueue(new Callback<Conta>() {
+                                @Override
+                                public void onResponse(Call<Conta> call, Response<Conta> response) {
+                                    Context context = getApplicationContext();
+                                    Toast toast;
+
+                                    if (response.errorBody() != null) {
+                                        String erro = null;
+
+                                        try {
+                                            erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                            erro = erro.replace("\"}", "");
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.TOP, 0,200);
+                                        toast.show();
+                                    } else {
+                                        Conta conta = response.body();
+                                        Intent intent = new Intent(TransferenciaActivity.this, ClienteActivity.class);
+                                        String mensagem = "Transferência realizada com sucesso!";
+                                        intent.putExtra("mensagem", mensagem);
+
+                                        SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                        Gson gson = new Gson();
+                                        prefsEditor.putString("conta", gson.toJson(conta));
+                                        prefsEditor.commit();
+
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Conta> call, Throwable t) {
+                                    Context context = getApplicationContext();
+                                    Toast toast;
+
+                                    toast = Toast.makeText(context, "Falha ao buscar conta!", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP, 0,200);
+                                    toast.show();
+                                }
+                            });
                         }
                     }
 
