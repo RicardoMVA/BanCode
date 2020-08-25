@@ -2,6 +2,7 @@ package com.br.recode.bancode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.NovaConta;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -45,9 +47,12 @@ public class ClienteActivity extends AppCompatActivity {
         CardView botaoEditarDados = findViewById(R.id.botaoEditarDados);
         CardView botaoSair = findViewById(R.id.botaoSair);
 
+        SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+        Gson gson = new Gson();
+        usuario = gson.fromJson(mPrefs.getString("user", ""), User.class);
+        conta = gson.fromJson(mPrefs.getString("conta", ""), Conta.class);
+
         Intent intent = getIntent();
-        usuario = (User) intent.getSerializableExtra("user");
-        conta = (Conta) intent.getSerializableExtra("conta");
         String mensagem = intent.getStringExtra("mensagem");
 
         if (conta != null) {
@@ -63,7 +68,7 @@ public class ClienteActivity extends AppCompatActivity {
 
         cabecalho.setText("Olá, " + usuario.getName() + "!");
 
-        saldo.setText("R$ " + new Double(conta.getAccount_balance()).toString());
+        saldo.setText("R$ " + String.format("%.2f", conta.getAccount_balance()));
 
         botaoEditarDados.setOnClickListener(new View.OnClickListener() {
             @Override
