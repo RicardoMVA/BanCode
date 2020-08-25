@@ -22,17 +22,28 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditarContaActivity extends AppCompatActivity {
+
+    private User usuario;
+    private Conta conta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_conta);
 
         Intent intent = getIntent();
-        final User usuario = (User) intent.getSerializableExtra("user");
-        final Conta conta = (Conta) intent.getSerializableExtra("conta");
+        usuario = (User) intent.getSerializableExtra("user");
+        conta = (Conta) intent.getSerializableExtra("conta");
 
         TextView cabecalho = findViewById(R.id.cabecalho);
-        cabecalho.setText("Situação atual da conta: " + conta.getStatus());
+
+        if (conta.getStatus() == 1) {
+            cabecalho.setText("Situação atual da conta: Ativa");
+        } else if (conta.getStatus() == 2) {
+            cabecalho.setText("Situação atual da conta: Inativa");
+        } else {
+            cabecalho.setText("Situação atual da conta: Cancelada");
+        }
 
         Button botaoAtivarConta = findViewById(R.id.botaoAtivarConta);
         Button botaoDesativarConta = findViewById(R.id.botaoDesativarConta);
@@ -82,6 +93,7 @@ public class EditarContaActivity extends AppCompatActivity {
                             String mensagem = "Edição realizada com sucesso!";
                             Intent intent = new Intent(EditarContaActivity.this, ClienteActivity.class);
                             intent.putExtra("user", usuario);
+                            intent.putExtra("conta", conta);
                             intent.putExtra("mensagem", mensagem);
                             startActivity(intent);
                         }
@@ -101,8 +113,9 @@ public class EditarContaActivity extends AppCompatActivity {
         });
     }
 
-    public void editarUsandoCodigo(View view, User user, Conta conta, int status) {
+    public void editarUsandoCodigo(View view, User user, Conta account, int status) {
         final User usuario = user;
+        final Conta conta = account;
         conta.setStatus(status);
 
         Call<Void> call = new RetrofitConfig().getContaService().editarConta(user.getCpf(), user.getPws(), conta);
@@ -130,6 +143,7 @@ public class EditarContaActivity extends AppCompatActivity {
                     String mensagem = "Edição realizada com sucesso!";
                     Intent intent = new Intent(EditarContaActivity.this, ClienteActivity.class);
                     intent.putExtra("user", usuario);
+                    intent.putExtra("conta", conta);
                     intent.putExtra("mensagem", mensagem);
                     startActivity(intent);
                 }

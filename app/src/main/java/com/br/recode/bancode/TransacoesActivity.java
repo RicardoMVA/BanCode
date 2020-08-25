@@ -16,7 +16,6 @@ import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import retrofit2.Call;

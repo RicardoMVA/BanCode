@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
 
@@ -62,10 +63,38 @@ public class MainActivity extends AppCompatActivity {
                                 toast.setGravity(Gravity.TOP, 0,200);
                                 toast.show();
                             } else {
-                                User usuario = response.body();
-                                Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
-                                intent.putExtra("user", usuario);
-                                startActivity(intent);
+                                final User usuario = response.body();
+
+                                Call<Conta> call2 = new RetrofitConfig().getContaService().buscarConta(usuario.getCpf(), usuario.getPws());
+
+                                call2.enqueue(new Callback<Conta>() {
+                                    @Override
+                                    public void onResponse(Call<Conta> call, Response<Conta> response) {
+                                        if (response.errorBody() != null) {
+                                            Conta conta = response.body();
+                                            Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
+                                            intent.putExtra("user", usuario);
+                                            intent.putExtra("conta", (Bundle) null);
+                                            startActivity(intent);
+                                        } else {
+                                            Conta conta = response.body();
+                                            Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
+                                            intent.putExtra("user", usuario);
+                                            intent.putExtra("conta", conta);
+                                            startActivity(intent);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Conta> call, Throwable t) {
+                                        Context context = getApplicationContext();
+                                        Toast toast;
+
+                                        toast = Toast.makeText(context, "Falha ao buscar conta!", Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.TOP, 0,200);
+                                        toast.show();
+                                    }
+                                });
                             }
                         }
 

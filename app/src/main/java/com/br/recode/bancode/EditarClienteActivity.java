@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.br.recode.bancode.model.Conta;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
 
@@ -21,13 +22,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditarClienteActivity extends AppCompatActivity {
+
+    private User usuario;
+    private Conta conta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_cliente);
 
         Intent intent = getIntent();
-        final User usuario = (User) intent.getSerializableExtra("user");
+        usuario = (User) intent.getSerializableExtra("user");
+        conta = (Conta) intent.getSerializableExtra("conta");
 
         final EditText cpfInput = findViewById(R.id.cpfInput);
         final EditText nomeInput = findViewById(R.id.nomeInput);
@@ -71,6 +77,7 @@ public class EditarClienteActivity extends AppCompatActivity {
                         String mensagem = "Edição realizada com sucesso!";
                         Intent intent = new Intent(EditarClienteActivity.this, ClienteActivity.class);
                         intent.putExtra("user", usuario);
+                        intent.putExtra("conta", conta);
                         intent.putExtra("mensagem", mensagem);
                         startActivity(intent);
                     }

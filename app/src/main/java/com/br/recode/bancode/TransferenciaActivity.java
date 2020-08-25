@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.br.recode.bancode.model.Conta;
-import com.br.recode.bancode.model.NovaConta;
 import com.br.recode.bancode.model.Transacao;
 import com.br.recode.bancode.model.User;
 import com.br.recode.bancode.util.RetrofitConfig;
@@ -25,6 +24,9 @@ import retrofit2.Response;
 
 public class TransferenciaActivity extends AppCompatActivity {
 
+    private User usuario;
+    private Conta conta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +38,8 @@ public class TransferenciaActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        final User usuario = (User) intent.getSerializableExtra("user");
-        final Conta conta = (Conta) intent.getSerializableExtra("conta");
+        usuario = (User) intent.getSerializableExtra("user");
+        conta = (Conta) intent.getSerializableExtra("conta");
         final Transacao transacao = new Transacao();
 
         botaoTransferir.setOnClickListener(new View.OnClickListener() {

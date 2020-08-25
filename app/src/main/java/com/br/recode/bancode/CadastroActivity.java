@@ -72,6 +72,7 @@ public class CadastroActivity extends AppCompatActivity {
                             User usuario = response.body();
                             Intent intent = new Intent(CadastroActivity.this, ClienteActivity.class);
                             intent.putExtra("user", usuario);
+                            intent.putExtra("conta", (Bundle) null);
                             startActivity(intent);
                         }
                     }
