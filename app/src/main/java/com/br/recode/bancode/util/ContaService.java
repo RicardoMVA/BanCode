@@ -19,7 +19,7 @@ public interface ContaService {
 
     @Headers("Contenty-Type: application/json")
     @POST("accounts/")
-    Call<Conta> criarConta(@Header("cpf") String cpf, @Header("pws") String pws, @Body NovaConta novaConta);
+    Call<Void> criarConta(@Header("cpf") String cpf, @Header("pws") String pws, @Body NovaConta novaConta);
 
     @Headers("Contenty-Type: application/json")
     @PUT("accounts/")

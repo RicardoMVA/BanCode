@@ -80,15 +80,15 @@ public class ClienteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 NovaConta novaConta = new NovaConta(usuario.getCpf());
-                Call<Conta> call = new RetrofitConfig().getContaService().criarConta(usuario.getCpf(), usuario.getPws(), novaConta);
+                Call<Void> call = new RetrofitConfig().getContaService().criarConta(usuario.getCpf(), usuario.getPws(), novaConta);
 
-                call.enqueue(new Callback<Conta>() {
+                call.enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Conta> call, Response<Conta> response) {
+                    public void onResponse(Call<Void> call, Response<Void> response) {
                         Context context = getApplicationContext();
                         Toast toast;
 
-                        if (response.body() == null) {
+                        if (response.errorBody() != null) {
                             String erro = null;
 
                             try {
@@ -102,25 +102,59 @@ public class ClienteActivity extends AppCompatActivity {
                             toast.setGravity(Gravity.TOP, 0,200);
                             toast.show();
                         } else {
-                            Conta conta = response.body();
+                            Call<Conta> call2 = new RetrofitConfig().getContaService().buscarConta(usuario.getCpf(), usuario.getPws());
 
-                            botaoCriarConta.setVisibility(View.INVISIBLE);
-                            botaoEditarConta.setVisibility(View.VISIBLE);
+                            call2.enqueue(new Callback<Conta>() {
+                                @Override
+                                public void onResponse(Call<Conta> call, Response<Conta> response) {
+                                    Context context = getApplicationContext();
+                                    Toast toast;
 
-                            toast = Toast.makeText(context, "Conta criada com sucesso!", Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.TOP, 0,200);
-                            toast.show();
+                                    if (response.errorBody() != null) {
+                                        String erro = null;
 
-                            SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
-                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
-                            Gson gson = new Gson();
-                            prefsEditor.putString("conta", gson.toJson(conta));
-                            prefsEditor.commit();
+                                        try {
+                                            erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                            erro = erro.replace("\"}", "");
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.TOP, 0,200);
+                                        toast.show();
+                                    } else {
+                                        Conta conta = response.body();
+
+                                        Intent intent = new Intent(ClienteActivity.this, ClienteActivity.class);
+                                        String mensagem = "Conta criada com sucesso!";
+                                        intent.putExtra("mensagem", mensagem);
+
+                                        SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                        Gson gson = new Gson();
+                                        prefsEditor.putString("conta", gson.toJson(conta));
+                                        prefsEditor.commit();
+
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Conta> call, Throwable t) {
+                                    Context context = getApplicationContext();
+                                    Toast toast;
+
+                                    toast = Toast.makeText(context, "Falha ao criar conta!", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP, 0,200);
+                                    toast.show();
+                                }
+                            });
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Conta> call, Throwable t) {
+                    public void onFailure(Call<Void> call, Throwable t) {
                         Context context = getApplicationContext();
                         Toast toast;
 
@@ -135,8 +169,10 @@ public class ClienteActivity extends AppCompatActivity {
         botaoEditarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ClienteActivity.this, EditarContaActivity.class);
-                startActivity(intent);
+                if (conta != null) {
+                    Intent intent = new Intent(ClienteActivity.this, EditarContaActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
