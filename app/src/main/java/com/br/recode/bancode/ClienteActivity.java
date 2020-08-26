@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import com.br.recode.bancode.util.RetrofitConfig;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.text.NumberFormat;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:text="NOVO CADASTRO"
                     android:textColor="#003257"
                     android:textSize="30sp"
@@ -67,6 +67,7 @@
                     android:inputType="number"
                     android:textSize="20sp"
                     android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -77,6 +78,7 @@
                     android:inputType="text"
                     android:textSize="20sp"
                     android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -87,6 +89,7 @@
                     android:inputType="text"
                     android:textSize="20sp"
                     android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -98,6 +101,7 @@
                     android:inputType="number"
                     android:textSize="20sp"
                     android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -108,6 +112,7 @@
                     android:inputType="text"
                     android:textSize="20sp"
                     android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold" />
 
                 <Button
@@ -119,6 +124,7 @@
                     android:paddingHorizontal="37dp"
                     android:text="CONFIRMAR"
                     android:textColor="#FFFFFF"
+                    android:layout_marginTop="15dp"
                     android:textStyle="bold" />
                 />
 
