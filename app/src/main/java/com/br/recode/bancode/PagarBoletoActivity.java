@@ -75,7 +75,7 @@ public class PagarBoletoActivity extends AppCompatActivity {
                             Context context = getApplicationContext();
                             Toast toast;
 
-                            if (response.body() == null) {
+                            if (response.errorBody() != null) {
                                 String erro = null;
 
                                 try {
