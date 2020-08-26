@@ -68,7 +68,7 @@ public class TransacoesActivity extends AppCompatActivity {
             botaoPagamento.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(TransacoesActivity.this, TransacoesActivity.class);
+                    Intent intent = new Intent(TransacoesActivity.this, PagarBoletoActivity.class);
                     startActivity(intent);
                 }
             });

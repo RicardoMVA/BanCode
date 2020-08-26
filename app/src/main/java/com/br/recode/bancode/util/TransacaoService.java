@@ -21,7 +21,7 @@ public interface TransacaoService {
 
     @Headers("Contenty-Type: application/json")
     @POST("transaction/pagamento/")
-    Call<Conta> pagarBoleto(@Header("account") int numeroConta, @Header("cpf") String cpf, @Header("pws") String pws, @Body Transacao transacao);
+    Call<Void> pagarBoleto(@Header("account") int numeroConta, @Header("cpf") String cpf, @Header("pws") String pws, @Body Transacao transacao);
 
     @Headers("Contenty-Type: application/json")
     @POST("transaction/transferencia/")

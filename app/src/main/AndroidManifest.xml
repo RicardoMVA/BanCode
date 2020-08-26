@@ -29,6 +29,7 @@
         <activity android:name=".TransferenciaActivity"/>
         <activity android:name=".ListaMovimentacoesActivity"/>
         <activity android:name=".GerarBoletoActivity"/>
+        <activity android:name=".PagarBoletoActivity"/>
     </application>
 
 </manifest>

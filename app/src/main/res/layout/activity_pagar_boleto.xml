@@ -71,6 +71,17 @@
                     android:layout_marginTop="50dp"/>
 
                 <EditText
+                    android:id="@+id/valorBoletoInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:inputType="text"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:hint="@string/valor_input_hint"
+                    android:layout_marginTop="20dp" />
+
+                <EditText
                     android:id="@+id/senhaBoletoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
