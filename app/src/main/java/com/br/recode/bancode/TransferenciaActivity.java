@@ -35,6 +35,7 @@ public class TransferenciaActivity extends AppCompatActivity {
 
         final EditText contaDestinoInput = findViewById(R.id.contaDestinoInput);
         final EditText valorInput = findViewById(R.id.valorInput);
+        final EditText senhaTransferenciaInput = findViewById(R.id.senhaTransferenciaInput);
         Button botaoTransferir = findViewById(R.id.botaoTransferir);
 
         SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
@@ -45,91 +46,107 @@ public class TransferenciaActivity extends AppCompatActivity {
         botaoTransferir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transacao.setDestino(Integer.parseInt(contaDestinoInput.getText().toString()));
-                transacao.setAmount(Double.parseDouble(valorInput.getText().toString()));
+                if (!senhaTransferenciaInput.getText().toString().equals(usuario.getPws())) {
+                    Context context = getApplicationContext();
+                    Toast toast;
 
-                Call<Void> call = new RetrofitConfig().getTransacaoService().transferencia(usuario.getCpf(), usuario.getPws(), transacao);
-
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    toast = Toast.makeText(context, "Senha inválida!", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP, 0, 200);
+                    toast.show();
+                } else if (Double.valueOf(valorInput.getText().toString()) <= 0) {
                         Context context = getApplicationContext();
                         Toast toast;
 
-                        if (response.errorBody() != null) {
-                            String erro = null;
+                        toast = Toast.makeText(context, "Valor não pode ser menor ou igual a zero!", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.TOP, 0, 200);
+                        toast.show();
+                } else {
+                    transacao.setDestino(Integer.parseInt(contaDestinoInput.getText().toString()));
+                    transacao.setAmount(Double.parseDouble(valorInput.getText().toString()));
 
-                            try {
-                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
-                                erro = erro.replace("\"}", "");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                    Call<Void> call = new RetrofitConfig().getTransacaoService().transferencia(usuario.getCpf(), usuario.getPws(), transacao);
 
-                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.TOP, 0,200);
-                            toast.show();
-                        } else {
-                            Call<Conta> call2 = new RetrofitConfig().getContaService().buscarConta(usuario.getCpf(), usuario.getPws());
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Context context = getApplicationContext();
+                            Toast toast;
 
-                            call2.enqueue(new Callback<Conta>() {
-                                @Override
-                                public void onResponse(Call<Conta> call, Response<Conta> response) {
-                                    Context context = getApplicationContext();
-                                    Toast toast;
+                            if (response.errorBody() != null) {
+                                String erro = null;
 
-                                    if (response.errorBody() != null) {
-                                        String erro = null;
+                                try {
+                                    erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                    erro = erro.replace("\"}", "");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
 
-                                        try {
-                                            erro = response.errorBody().string().replace("{\"erro\":\"", "");
-                                            erro = erro.replace("\"}", "");
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
+                                toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.TOP, 0,200);
+                                toast.show();
+                            } else {
+                                Call<Conta> call2 = new RetrofitConfig().getContaService().buscarConta(usuario.getCpf(), usuario.getPws());
+
+                                call2.enqueue(new Callback<Conta>() {
+                                    @Override
+                                    public void onResponse(Call<Conta> call, Response<Conta> response) {
+                                        Context context = getApplicationContext();
+                                        Toast toast;
+
+                                        if (response.errorBody() != null) {
+                                            String erro = null;
+
+                                            try {
+                                                erro = response.errorBody().string().replace("{\"erro\":\"", "");
+                                                erro = erro.replace("\"}", "");
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                                            toast.setGravity(Gravity.TOP, 0,200);
+                                            toast.show();
+                                        } else {
+                                            Conta conta = response.body();
+                                            Intent intent = new Intent(TransferenciaActivity.this, ClienteActivity.class);
+                                            String mensagem = "Transferência realizada com sucesso!";
+                                            intent.putExtra("mensagem", mensagem);
+
+                                            SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                            Gson gson = new Gson();
+                                            prefsEditor.putString("conta", gson.toJson(conta));
+                                            prefsEditor.commit();
+
+                                            startActivity(intent);
                                         }
+                                    }
 
-                                        toast = Toast.makeText(context, erro, Toast.LENGTH_LONG);
+                                    @Override
+                                    public void onFailure(Call<Conta> call, Throwable t) {
+                                        Context context = getApplicationContext();
+                                        Toast toast;
+
+                                        toast = Toast.makeText(context, "Falha ao buscar conta!", Toast.LENGTH_LONG);
                                         toast.setGravity(Gravity.TOP, 0,200);
                                         toast.show();
-                                    } else {
-                                        Conta conta = response.body();
-                                        Intent intent = new Intent(TransferenciaActivity.this, ClienteActivity.class);
-                                        String mensagem = "Transferência realizada com sucesso!";
-                                        intent.putExtra("mensagem", mensagem);
-
-                                        SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
-                                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-                                        Gson gson = new Gson();
-                                        prefsEditor.putString("conta", gson.toJson(conta));
-                                        prefsEditor.commit();
-
-                                        startActivity(intent);
                                     }
-                                }
-
-                                @Override
-                                public void onFailure(Call<Conta> call, Throwable t) {
-                                    Context context = getApplicationContext();
-                                    Toast toast;
-
-                                    toast = Toast.makeText(context, "Falha ao buscar conta!", Toast.LENGTH_LONG);
-                                    toast.setGravity(Gravity.TOP, 0,200);
-                                    toast.show();
-                                }
-                            });
+                                });
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Context context = getApplicationContext();
-                        Toast toast;
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Context context = getApplicationContext();
+                            Toast toast;
 
-                        toast = Toast.makeText(context, "Falha ao realizar transferência!", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP, 0,200);
-                        toast.show();
-                    }
-                });
+                            toast = Toast.makeText(context, "Falha ao realizar transferência!", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.TOP, 0,200);
+                            toast.show();
+                        }
+                    });
+                }
             }
         });
 

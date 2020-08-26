@@ -75,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:hint="@string/senha_input_hint"
