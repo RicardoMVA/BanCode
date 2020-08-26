@@ -149,5 +149,20 @@ public class ClienteActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        botaoSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ClienteActivity.this, MainActivity.class);
+
+                SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                prefsEditor.putString("user", null);
+                prefsEditor.putString("conta", null);
+                prefsEditor.commit();
+
+                startActivity(intent);
+            }
+        });
     };
 }

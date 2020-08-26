@@ -2,6 +2,7 @@ package com.br.recode.bancode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -123,6 +124,21 @@ public class AdminActivity extends AppCompatActivity {
                         toast.show();
                     }
                 });
+            }
+        });
+
+        botaoSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+
+                SharedPreferences mPrefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                prefsEditor.putString("user", null);
+                prefsEditor.putString("conta", null);
+                prefsEditor.commit();
+
+                startActivity(intent);
             }
         });
     }
